@@ -1,6 +1,7 @@
 const express = require('express');
 const usersRoutes = require('./routes/users');
 const cardsRoutes = require('./routes/cards');
+const { HttpStatus, HttpResponseMessage } = require('./enums/http');
 const app = express();
 const PORT = 3000;
 
@@ -10,7 +11,7 @@ app.use(cardsRoutes);
 
 // Default 404
 app.use((req, res) => {
-  res.status(404).json({ message: 'A solicitação não foi encontrada' });
+  return res.status(HttpStatus.NOT_FOUND).send(HttpResponseMessage.NOT_FOUND);
 });
 
 // Starts server
